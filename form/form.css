@@ -1,0 +1,19 @@
+body {  
+    background-color: lightslategray;
+}
+
+.box {
+    width: 20%;
+    margin: 0 auto; 
+    background: white;
+    border-radius: 2%;
+    padding: 1rem;
+}
+
+body {
+    font-family: Oswald;
+}
+
+.form {
+    text-align: left;
+}
