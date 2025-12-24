@@ -1,0 +1,18 @@
+[
+    {
+        "id": "pamahres",
+        "name": "Pamahres",
+        "description": "A course management and quiz generation platform powered by AI.",
+        "tags": ["DRF", "LLM", "Full-Stack"],
+        "githubLink": "https://github.com/kabsmeiou/pamahres",
+        "sampleImages": []
+    },
+    {
+        "id": "startup-success-predictor",
+        "name": "Startup Success Predictor",
+        "description": "A machine learning model that predicts the success of startups based on various factors using a Turkish startup dataset.",
+        "tags": ["ML", "Data Science", "Python"],
+        "githubLink": "https://github.com/kabsmeiou/startup-success-predictor",
+        "sampleImages": []
+    }
+]
