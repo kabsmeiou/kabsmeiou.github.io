@@ -20,47 +20,47 @@ Provenance: This dataset contains data on crowdfunding campaigns in Turkey. The 
 
 ### Clone the repository on your device
 First, clone this repository by executing this prompt on the CLI:
-```
+```bash
 git clone https://github.com/kabsmeiou/startup-success-probability.git
 ```
 Then go to the terminal and make sure to navigate to where the *startup-success-probability* folder is at
-```
+```bash
 cd startup-success-probability
 ```
 
 ### Creating the environment
 Create a virtual environment with:
-```
+```bash
 python3 -m venv .venv
 ```
 
 Upon creating the environment, activate it with
 
 **Windows:**
-```
+```bash
 .venv/Scripts/activate
 ```
 if the command above doesn't work in Windows, try a different approach:
-```
+```bash
 cd .venv/Scripts
 activate
 ```
 
 or\
 **Unix-based systems**
-```
+```bash
 source .venv/bin/activate
 ```
 
 Install the dependencies by
-```
+```bash
 pip install -r requirements.txt
 ```
 
 ### Alternative: Using UV
 
 You may install **uv package manager** on your system and simply run
-```
+```bash
 uv sync --frozen
 ```
 read the docs:https://docs.astral.sh/uv/getting-started/installation/ for details about installation.
@@ -68,33 +68,33 @@ read the docs:https://docs.astral.sh/uv/getting-started/installation/ for detail
 ### Testing the service
 
 Now that the dependencies are set, you can start running the scripts. First, go to the *src* directory
-```
+```bash
 cd src
 ```
 At this point, you can choose to train the model yourself by running *train.py*
-```
+```bash
 python3 train.py
 ```
 
 However, you can simply run *test.py* as the model is already available in */src* as *startup-success-predictor.bin*.
 Do this by first running the app using
-```
+```bash
 python3 main.py
 ```
 Then running *test.py* that sends a **POST** request to the service deployed
-```
+```bash
 python3 test.py
 ```
 Feel free to modify the dictionary in the *test.py* file to see how the probability of success changes or access the link shown and use the web app.
 
 ### Running the app with Docker
 For this to work, make sure you have Docker installed on your system and build the project with the following command
-```
+```bash
 docker build -t startup-predict .
 ```
 
 Then, on your terminal, run this command:
-```
+```bash
 docker run -it --rm -p 8000:8000 startup-predict
 ```
 In case of the error ***docker: permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Head "http://%2Fvar%2Frun%2Fdocker.sock/_ping": dial unix /var/run/docker.sock: connect: permission denied.***, add *sudo* to the commands above with *docker build* and *docker run*.
@@ -103,7 +103,7 @@ You should see something like this:\
 ![alt text](https://i.imgur.com/hCM8H2u.png)
 
 Finally, you may access 
-```
+```bash
 http://0.0.0.0:8000
 ```
 and start filling out the forms to get predictions!
