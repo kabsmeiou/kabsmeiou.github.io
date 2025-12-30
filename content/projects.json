@@ -8,11 +8,26 @@
         "sampleImages": []
     },
     {
+        "id": "study-hours-estimator",
+        "name": "Study Hours Estimator",
+        "description": "A machine learning model that estimates the number of study hours required for a student to achieve a desired grade based on their past performance and study habits.",
+        "tags": ["ML", "Docker", "Flask", "AWS"],
+        "githubLink": "https://github.com/kabsmeiou/study-hours-estimator"
+    },
+    {
         "id": "startup-success-predictor",
         "name": "Startup Success Predictor",
         "description": "A machine learning model that predicts the success of startups based on various factors using a Turkish startup dataset.",
-        "tags": ["ML", "Data Science", "Python"],
+        "tags": ["ML", "Data Science", "Docker", "FastAPI"],
         "githubLink": "https://github.com/kabsmeiou/startup-success-predictor",
+        "sampleImages": []
+    },
+    {
+        "id": "catloaf",
+        "name": "CatLoaf",
+        "description": "An image classification project that uses the pre-trained Inception V3 CNN model to classify images of catloafs (cats lying with their paws tucked under them) from default cats",
+        "tags": ["ML", "TensorFlow", "Python", "Kubernetes", "Docker"],
+        "githubLink": "https://github.com/kabsmeiou/catloaf",
         "sampleImages": []
     }
 ]
