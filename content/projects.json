@@ -1,5 +1,13 @@
 [
     {
+        "id": "ossanimap",
+        "name": "ossanimap",
+        "description": "ossanimap is an osu! beatmapset packager that aggregates ranked/loved osu! beatmaps into downloadable packages grouped by the anime name.",
+        "tags": ["FastAPI", "Redis", "Docker", "Vue.js"],
+        "githubLink": "https://github.com/kabsmeiou/ossanimap",
+        "sampleImages": []
+    },
+    {
         "id": "pamahres",
         "name": "Pamahres",
         "description": "A course management and quiz generation platform powered by AI.",
@@ -12,7 +20,8 @@
         "name": "Study Hours Estimator",
         "description": "A machine learning model that estimates the number of study hours required for a student to achieve a desired grade based on their past performance and study habits.",
         "tags": ["ML", "Docker", "Flask", "AWS"],
-        "githubLink": "https://github.com/kabsmeiou/study-hours-estimator"
+        "githubLink": "https://github.com/kabsmeiou/study-hours-estimator",
+        "sampleImages": []
     },
     {
         "id": "startup-success-predictor",
