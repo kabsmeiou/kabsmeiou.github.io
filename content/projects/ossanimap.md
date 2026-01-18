@@ -1,4 +1,4 @@
-# ossanimap: an osu! beatmap packager for anime soundtracks
+# ossanimap: an osu! beatmap packager for anime soundtracks (incomplete documentation)
 
 
 ## Why I started this project
