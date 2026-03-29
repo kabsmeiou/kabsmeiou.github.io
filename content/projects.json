@@ -5,6 +5,7 @@
         "description": "ossanimap is an osu! beatmapset packager that aggregates ranked/loved osu! beatmaps into downloadable packages grouped by the anime name.",
         "tags": ["FastAPI", "Redis", "Docker", "Vue.js"],
         "githubLink": "https://github.com/kabsmeiou/ossanimap",
+        "videoDir": "/videos/ossanimap.mp4",
         "sampleImages": []
     },
     {
@@ -13,6 +14,7 @@
         "description": "A course management and quiz generation platform powered by AI.",
         "tags": ["DRF", "LLM", "Full-Stack"],
         "githubLink": "https://github.com/kabsmeiou/pamahres",
+        "videoDir": "/videos/pamahres.mp4",
         "sampleImages": []
     },
     {
@@ -21,6 +23,7 @@
         "description": "A machine learning model that estimates the number of study hours required for a student to achieve a desired grade based on their past performance and study habits.",
         "tags": ["ML", "Docker", "Flask", "AWS"],
         "githubLink": "https://github.com/kabsmeiou/study-hours-estimator",
+        "videoDir": "/videos/study-hours-estimator.mp4",
         "sampleImages": []
     },
     {
