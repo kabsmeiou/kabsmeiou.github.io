@@ -1,5 +1,16 @@
 [
     {
+        "role": "Rust Backend Developer",
+        "company": "Tekkio",
+        "duration": "Jan 2026 - Present",
+        "description": [
+            "⋆˙⟡ Backend Developer for AnchorVM dealing with scalable and reliable virtual machine interactions",
+            "⋆˙⟡ Built a cross-platform CPU / Memory Statistic collector background service with Rust"
+        ],
+        "companyLogo": "https://tekkio.com/img/icon/tekkio-logo.svg",
+        "companyLink": "https://tekkio.com/"
+    },
+    {
         "role": "Full Stack Developer Intern",
         "company": "Achieve Without Borders, Inc",
         "duration": "Jun 2025 - Aug 2025",
@@ -21,16 +32,5 @@
         ],
         "companyLogo": "https://cdn.prod.website-files.com/6573df751dbab4bb0aac132c/65cbe658681665405e277f6d_extern_primary_black.svg",
         "companyLink": "https://www.extern.com/national-geographic-society-and-the-nature-conservancy-externships"
-    },
-    {
-        "role": "Rust Backend Developer",
-        "company": "Tekkio",
-        "duration": "Jan 2026 - Present",
-        "description": [
-            "⋆˙⟡ Backend Developer for AnchorVM dealing with scalable and reliable virtual machine interactions",
-            "⋆˙⟡ Built a cross-platform CPU / Memory Statistic collector background service with Rust"
-        ],
-        "companyLogo": "https://tekkio.com/img/icon/tekkio-logo.svg",
-        "companyLink": "https://tekkio.com/"
     }
 ]
