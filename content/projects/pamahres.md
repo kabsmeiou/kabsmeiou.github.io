@@ -1,4 +1,4 @@
-# PAMAHRES
+# Pamahres: AI Quiz Generator
 
 A modern, AI-powered learning management system that helps students create courses, generate quizzes from PDF materials, and get personalized tutoring through an intelligent chatbot.
 

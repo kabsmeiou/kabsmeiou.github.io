@@ -1,4 +1,4 @@
-# ossanimap: an osu! beatmap packager for anime soundtracks (incomplete documentation)
+# ossanimap: an osu! beatmap packager for anime soundtracks
 
 
 ## Why I started this project
@@ -104,9 +104,78 @@ The idea is that when clients types in their anime, I can send a request for sea
 Bringing my learnings from my earlier projects, I wrote the routes to have as little business logic as possible. Also, in deciding what routes to build, I simply thought about what database operations or services do I need to allow my users to use. There is not much going on in the implementation of this because all of the logic being executed inside the routes are abstracted away with functions. For routes handling database operations, however, I decided to use the Depends() function to handle the async session required to interact with the database. With this, the session lasts for the duration of the request, is properly scoped (because they are not supposed to be global), and should close everytime. There is one exception to this: the *create_packs* route. This is due to the fact that the db transaction happens as a job for a worker to finish. In the first place, its not possible to serialize the session object and so it cannot be stored in the job queue.
 
 ### Task 4: Setting up models
+Now, for the models! It's all about choosing the fields that matters, the ones that we want to store and will be accessed most of the time. In this case, we care for the fields for pack and anime, assuming that pack includes the ids that we need from the beatmapsets. With these fields, we want to reduce the amount of external API calls needed for requests that are used the most. Given this, it becomes a simple task!
 
 ### Task 5: Using Async 
+Ossanimap adopted an asynchronous approach for backend processes. This is important because the app is highly reliant on external services which means uncontrollable circumstances may happen(e.g network delays, external server errors, patches, etc.). With a particular concern on network delays, adopting a synchronous approach makes the program wait and do nothing. That is not what we want. For example, in my implementation for performing multiple search calls:
+```py
+# so we dont accidentally spam osu! api with bunch of requests at once
+# we use semaphore to limit concurrent requests
+async def perform_multiple_search_calls(
+    keywords: list[str],
+    k: int
+) -> list[Beatmapset]:
+    semaphore = asyncio.Semaphore(k)
+
+    async def limited_search(keyword: str) -> list[Beatmapset]:
+        async with semaphore:
+            return await search_beatmapsets(keyword)
+
+    search_calls = [limited_search(keyword) for keyword in keywords]
+    results = await asyncio.gather(*search_calls)
+
+    # flatten list[list[Beatmapset]] → list[Beatmapset]
+    return [bm for batch in results for bm in batch]
+```
+here, I use `asyncio.gather()` to perform concurrent searches, while utilizing a *Semaphore* to limit the maximum simultaneuous calls. Most implementations across the codebase uses async for the aforementioned concerns, while functions without db or network interactions stay synchronous.
 
 ### Task 6: Inserting error logs
+Now, we go back to some of the fundamentals we have to keep in mind while writing code: handling errors. I used to do this mindlessly, but with this project, I decided to pay more attention to how errors are being handled. Why should I care about it? Well, I considered a couple of things:
+- It helps a lot with debugging during the early stages of development
+- It tells me where the code could possibly fail
+- It helps me understand the flow of my code better by thinking about where it could fail
+These are some of the things I remember thinking about while working on this project.
+
+My approach for writing the error handling for this code is simple: the boundaries where network / database operations are being called. For example, check this route:
+
+```py
+@router.delete("/{pack_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_pack(pack_id: int, session: AsyncSession = Depends(get_session)):
+    try:
+        await delete_pack_from_db(session, pack_id)
+    except ValueError as e:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e))
+    logger.info(f"Pack {pack_id} deleted successfully")
+```
+It is a basic function that tries to call `delete_pack_from_db`, the deletes the pack in the database. If this function failed to do it's job and a ValueError occurs, we return an exception, sending it back to the frontend that calls `delete_pack()`. This error is on the network level. To understand better why this error is being returned, we take a look at the `delete_pack_from_db`:
+
+```py
+async def delete_pack(session, pack_id):
+    pack_to_delete = await session.get(PackDB, pack_id)
+    if pack_to_delete is None:
+        logger.warning(f"Pack with ID {pack_id} not found. Cannot delete.")
+        raise ValueError(f"Pack with ID {pack_id} not found")
+    logger.info(f"Pack found. Deleting pack with ID {pack_id}")
+    await session.delete(pack_to_delete)
+```
+We can see that the function first checks if the pack to delete even exists, if not, we raise a `ValueError`. That is the error that the caller function expects, it wouldn't be a database error if the db operations worked just fine and its just that there's nothing to delete. Now, notice that for the database operations in this function like `session.get()` and `session.delete()`, I didn't wrap it in a try-except block. Normally, you would want to do that but it does get repetitive and clutters the code. Instead, I made a workaround at the `session` level. Remember that the `delete_pack()` route depends on `get_session`:
+```py
+async def delete_pack(pack_id: int, session: AsyncSession = Depends(get_session))
+```
+`get_session` is actually an async function that yields a `session` instance for the database operations:
+
+```py
+async def get_session() -> typing.AsyncIterator[AsyncSession]:
+    async with AsyncSessionLocal() as session:
+        try:
+            yield session
+            await session.commit()
+        except SQLAlchemyError as e:
+            await session.rollback()
+            raise RuntimeError(str(e.__dict__.get("orig"))) from e
+```
+
+What I love about this is that this try-except block would be enough for error handling and commits for all functions that use the `session` instance. Less repetitive code to look at means less distractions! haha
 
 ## What's next?
+Right now, this app is not live as I've deleted the database in DigitalOcean due to not having any budget for it. In the two weeks it is up and running, it managed to reach 30 overall pack downloads. No plans on working on it for now as I move on to other projects but this was fun to build!
