@@ -1,5 +1,14 @@
 [
     {
+        "id": "ossanimap-writeup",
+        "title": "ossanimap",
+        "content": "A detailed write-up on the ossanimap project, covering some of my thoughts and what I learned while working on it.",
+        "publishedDate": "2026-03-29T019:32:00Z",
+        "lastUpdatedDate": "2026-03-29T19:32:00Z",
+        "tags": ["Software Development", "Open Source"],
+        "readTimeInMinutes": 12
+    },
+    {
         "id": "outliers-br",
         "title": "Book Review Series #1",
         "content": "Short review for 'Outliers' by Malcolm Gladwell: An exploration of the factors contributing to high levels of success, emphasizing the importance of opportunity, cultural background, and hard work.",
