@@ -40,6 +40,6 @@
         "description": "An image classification project that uses the pre-trained Inception V3 CNN model to classify images of catloafs (cats lying with their paws tucked under them) from default cats",
         "tags": ["ML", "TensorFlow", "Python", "Kubernetes", "Docker"],
         "githubLink": "https://github.com/kabsmeiou/catloaf",
-        "sampleImages": []
+        "sampleImages": ["/images/loaf.png"]
     }
 ]
