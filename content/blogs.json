@@ -1,5 +1,14 @@
 [
     {
+        "id": "rust-closures",
+        "title": "What are Closures in Rust?",
+        "content": "nerdge episode, Rust series: closures",
+        "publishedDate": "2026-04-07T021:50:00Z",
+        "lastUpdatedDate": "2026-04-07T021:50:00Z",
+        "tags": ["dev", "programming", "notes"],
+        "readTimeInMinutes": 5
+    },
+    {
         "id": "ossanimap-writeup",
         "title": "ossanimap",
         "content": "A detailed write-up on the ossanimap project, covering some of my thoughts and what I learned while working on it.",
