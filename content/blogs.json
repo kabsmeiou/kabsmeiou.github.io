@@ -1,5 +1,14 @@
 [
     {
+        "id": "cargo-settings",
+        "title": "Cargo: Profiles and Settings",
+        "content": "nerdge episode, Rust series: cargo settings",
+        "publishedDate": "2026-04-20T021:00:00Z",
+        "lastUpdatedDate": "2026-04-20T021:00:00Z",
+        "tags": ["dev", "programming", "notes"],
+        "readTimeInMinutes": 3
+    },
+    {
         "id": "rust-closures",
         "title": "What are Closures in Rust?",
         "content": "nerdge episode, Rust series: closures",
